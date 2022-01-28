@@ -12,8 +12,8 @@ jobs:
       - uses: actions/setup-python@v2
         with:
           python-version: '3.8'
-      - name: package
-        run: python -m venv github-workflow-example
+      - name: create venv
+        run: python -m venv
       - name: package
         run: make clean test bundle LATEST_TAG=${{ github.ref }}
       - name: release
