@@ -22,7 +22,32 @@ jobs:
         with:
           draft: false
           prerelease: false
-          release_name: ${{ github.ref }}
-          tag_name: ${{ github.ref }}
+          release_name: github-workflow-example-release-${{ github.ref_name }}
+          tag_name: github-workflow-example-release-${{ github.ref_name }}
         env:
           GITHUB_TOKEN: ${{ github.token }}
+      - name: upload artifact
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./artifacts/github-workflow-example-release-${{ github.ref_name }}.zip
+          asset_name: github-workflow-example-release-${{ github.ref_name }}.zip
+          asset_content_type: application/gzip
+      - name: upload artifact digest
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./artifacts/github-workflow-example-release-${{ github.ref_name }}.zip.base64sha256
+          asset_name: github-workflow-example-release-${{ github.ref_name }}.zip.base64sha256
+      - name: upload artifact version text file
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./artifacts/latest.version
+          asset_name: latest.version

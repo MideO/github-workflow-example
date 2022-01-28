@@ -103,11 +103,12 @@ bundle:
 	@echo "Building deployment artifacts"
 	@mkdir -p $(TARGET_DIR)
 	@mkdir -p $(ARTIFACT_DIR)
-	@printf $(LATEST_TAG) > $(ARTIFACT_DIR)/presigned_url_latest.version
+	@printf $(LATEST_TAG) > $(ARTIFACT_DIR)/latest.version
 	@cp -r handler.py $(TARGET_DIR)
 	@cp -r logging.conf $(TARGET_DIR)
 	@cd $(TARGET_DIR) && zip -q -r ../$(ARTIFACT_DIR)/$(CURRENT_ARTIFACT_VERSION) .
 	@openssl dgst -sha256 -binary $(ARTIFACT_DIR)/$(CURRENT_ARTIFACT_VERSION) | openssl enc -base64 > $(ARTIFACT_DIR)/$(CURRENT_ARTIFACT_VERSION).base64sha256
+	@ls $(ARTIFACT_DIR)
 
 
 push-s3: s3-bucket-info
