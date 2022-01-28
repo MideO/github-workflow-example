@@ -13,7 +13,7 @@ jobs:
         with:
           python-version: '3.8'
       - name: create venv
-        run: python -m venv
+        run: python -m venv .
       - name: package
         run: make clean test bundle LATEST_TAG=${{ github.ref }}
       - name: release
