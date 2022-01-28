@@ -15,7 +15,7 @@ jobs:
       - name: install requirements
         run: mkdir target && pip install -r requirements.txt -t target
       - name: package
-        run: make bundle LATEST_TAG=${{ github.branch }}
+        run: make bundle LATEST_TAG=${{ github.ref_name }}
       - name: release
         uses: actions/create-release@v1
         id: create_release
