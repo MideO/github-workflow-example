@@ -45,6 +45,7 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: artifacts/github-workflow-example-${{ github.ref_name }}.zip.base64sha256
           asset_name: github-workflow-example-${{ github.ref_name }}.zip.base64sha256
+          asset_content_type: application/gzip
       - name: upload artifact version text file
         uses: actions/upload-release-asset@v1
         env:
@@ -53,3 +54,4 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: artifacts/latest.version
           asset_name: latest.version
+          asset_content_type: application/text
