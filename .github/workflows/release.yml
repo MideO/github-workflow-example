@@ -2,7 +2,7 @@ name: release
 on:
   push:
     tags:
-      - *
+      - '*'
   pull_request:
 jobs:
   build_release:
