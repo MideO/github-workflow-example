@@ -16,8 +16,8 @@ jobs:
         run: mkdir target && pip install -r requirements.txt -t target
       - name: package
         run: make bundle LATEST_TAG=${{ github.ref_name }}
-      - name: package
-        run: ls -al
+      - name: list artifacts
+        run: ls -al artifacts
       - name: release
         uses: actions/create-release@v1
         id: create_release
