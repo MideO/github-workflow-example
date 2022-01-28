@@ -13,7 +13,7 @@ jobs:
         with:
           python-version: '3.8'
       - name: package
-        run: @python -m venv github-workflow-example
+        run: python -m venv github-workflow-example
       - name: package
         run: make clean test bundle LATEST_TAG=${{ github.ref }}
       - name: release
