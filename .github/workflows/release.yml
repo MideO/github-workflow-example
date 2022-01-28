@@ -1,0 +1,26 @@
+name: release
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+jobs:
+  build_release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/python@v2
+        with:
+          python-version: '3.8'
+      - name: package
+        run: make clean test bundle LATEST_TAG=${{ github.ref }}
+      - name: release
+        uses: actions/create-release@v1
+        id: create_release
+        with:
+          draft: false
+          prerelease: false
+          release_name: ${{ github.ref }}
+          tag_name: ${{ github.ref }}
+        env:
+          GITHUB_TOKEN: ${{ github.token }}

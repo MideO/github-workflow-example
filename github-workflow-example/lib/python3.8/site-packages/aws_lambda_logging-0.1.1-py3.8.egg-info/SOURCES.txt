@@ -1,0 +1,11 @@
+MANIFEST.in
+README.rst
+VERSION
+aws_lambda_logging.py
+setup.cfg
+setup.py
+aws_lambda_logging.egg-info/PKG-INFO
+aws_lambda_logging.egg-info/SOURCES.txt
+aws_lambda_logging.egg-info/dependency_links.txt
+aws_lambda_logging.egg-info/requires.txt
+aws_lambda_logging.egg-info/top_level.txt

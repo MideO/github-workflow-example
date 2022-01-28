@@ -1,0 +1,12 @@
+
+[dev]
+bumpversion
+twine
+
+[tests]
+flake8-import-order
+pylama
+pytest
+pytest-cov
+pytest-runner
+tox

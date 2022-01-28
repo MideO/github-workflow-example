@@ -1,0 +1,4 @@
+black==19.10b0
+semver==2.13.0
+bandit==1.7.1
+safety==1.10.3

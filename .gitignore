@@ -1,0 +1,17 @@
+target
+artifacts
+.history
+/lib
+/.idea
+/*.iml
+/*.ipr
+/.idea_modules
+*.iws
+*.pyc
+__pycache__
+cip-s3-sdes-presigned-url-lambda
+.vscode
+.idea
+.coverage
+.pytest_cache
+/presigned_url_latest.version
