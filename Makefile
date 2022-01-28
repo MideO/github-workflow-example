@@ -42,9 +42,9 @@ clean:
 	rm -rf __pycache__ */**.pyc .pytest_cache  $(TARGET_DIR) $(ARTIFACT_DIR)
 
 set-up:
-	@ls -al
 	@echo " "
 	@echo "Setting up environment"
+	@python --version
     ifeq ('$(shell type -P python)','')
 	    $(error python interpreter: 'python' not found!)
     endif
