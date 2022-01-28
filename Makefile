@@ -44,11 +44,12 @@ clean:
 set-up:
 	@echo " "
 	@echo "Setting up environment"
-	@python --version
     ifeq ('$(shell type -P python)','')
 	    $(error python interpreter: 'python' not found!)
     endif
+	@echo "Creating $(PROJECT)"
 	@python -m venv $(PROJECT)
+	@echo "Created venv $(PROJECT)"
 	@ls -al
 	$(PIP) install -q --upgrade pip
 	$(PIP) install -q -r requirements.txt -r requirements-test.txt -r requirements-build.txt;
