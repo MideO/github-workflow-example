@@ -1,8 +1,8 @@
 name: release
 on:
   push:
-    branches:
-      - main
+    tags:
+      - *
   pull_request:
 jobs:
   build_release:
@@ -25,7 +25,7 @@ jobs:
           draft: false
           prerelease: false
           release_name: github-workflow-example-release-${{ github.ref_name }}
-          tag_name: github-workflow-example-release-${{ github.ref_name }}
+          tag_name: ${{ github.ref }}
         env:
           GITHUB_TOKEN: ${{ github.token }}
       - name: upload artifact
