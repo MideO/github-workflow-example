@@ -4,7 +4,7 @@ SHELL := /usr/bin/env bash
 ARTIFACT_DIR = artifacts
 TARGET_DIR = target
 PROJECT = github-workflow-example
-PYTHON = $(PROJECT)/bin/python -m
+PYTHON = $(PROJECT)/bin/python3 -m
 PIP = $(PROJECT)/bin/pip3
 # Vars End
 
@@ -44,10 +44,10 @@ clean:
 set-up:
 	@echo " "
 	@echo "Setting up environment"
-    ifeq ('$(shell type -P python)','')
+    ifeq ('$(shell type -P python3)','')
 	    $(error python interpreter: 'python' not found!)
     endif
-	@python -m venv $(PROJECT)
+	@python3 -m venv $(PROJECT)
 	$(PIP) install -q --upgrade pip
 	$(PIP) install -q -r requirements.txt -r requirements-test.txt -r requirements-build.txt;
 # Utils End
@@ -101,12 +101,11 @@ push-latest-release-tag:
 bundle:
 	@echo " "
 	@echo "Building deployment artifacts"
-	@mkdir $(TARGET_DIR)
-	@mkdir $(ARTIFACT_DIR)
+	@mkdir -p $(TARGET_DIR)
+	@mkdir -p $(ARTIFACT_DIR)
 	@printf $(LATEST_TAG) > $(ARTIFACT_DIR)/presigned_url_latest.version
 	@cp -r handler.py $(TARGET_DIR)
 	@cp -r logging.conf $(TARGET_DIR)
-	$(PIP) install -q -r requirements.txt -t $(TARGET_DIR)/
 	@cd $(TARGET_DIR) && zip -q -r ../$(ARTIFACT_DIR)/$(CURRENT_ARTIFACT_VERSION) .
 	@openssl dgst -sha256 -binary $(ARTIFACT_DIR)/$(CURRENT_ARTIFACT_VERSION) | openssl enc -base64 > $(ARTIFACT_DIR)/$(CURRENT_ARTIFACT_VERSION).base64sha256
 
