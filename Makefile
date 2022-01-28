@@ -4,7 +4,7 @@ SHELL := /usr/bin/env bash
 ARTIFACT_DIR = artifacts
 TARGET_DIR = target
 PROJECT = github-workflow-example
-PYTHON = $(PROJECT)/bin/python3 -m
+PYTHON = $(PROJECT)/bin/python -m
 PIP = $(PROJECT)/bin/pip3
 # Vars End
 
